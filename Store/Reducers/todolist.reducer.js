@@ -42,7 +42,6 @@ export default (state = defaultState, action) => {
     case TYPE.SELECT: {
       const { items, selected } = state;
       const { payload } = action;
-      console.log('selected', selected)
       if (selected.has(payload)) {
         selected.delete(payload);
       } else selected.add(payload);

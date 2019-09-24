@@ -16,8 +16,12 @@ const InputToAdd = ({
   },[setColor]);
 
   useEffect(() => {
-    setColor(selected.has(item.id) ? 'red' : 'blue');
+    const newColor = selected.has(item.id) ? 'red' : 'blue';
+    if (color !== newColor) {
+      setColor(newColor);
+    }
   }, [selected])
+
   return (
     <View>
       <Text style={{color: color, fontSize: 20}} onPress={handlePress}>{item.name}</Text>
