@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useMemo} from "react";
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/todolist.actions';
 import { View, Text } from 'react-native';
@@ -20,16 +20,20 @@ const InputToAdd = ({
     if (color !== newColor) {
       setColor(newColor);
     }
-  }, [selected])
+  }, [ selected, setColor, color])
 
-  return (
+  const renderText = useMemo(() => (
     <View>
       <Text style={{color: color, fontSize: 20}} onPress={handlePress}>{item.name}</Text>
     </View>
-)
+  ), [color])
+
+  return renderText;
 }
 
-export default connect(undefined,
+export default connect((state) => ({
+  selected: state.todo.selected
+}),
 {
   select: actions.select
 })(InputToAdd)

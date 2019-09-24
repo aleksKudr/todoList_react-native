@@ -11,7 +11,7 @@ export const TodoList = ({items, selected}) => {
       <ScrollView>
         <View>
           {items.map((item, index) => (
-            <Row key={index} item={item} selected={selected}/>
+            <Row key={index} item={item}/>
           ))}
         </View>
       </ScrollView>
@@ -39,6 +39,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect((state) => ({
-  items: state.todo.items,
-  selected: state.todo.selected
+  items: state.todo.items
 }))(TodoList)

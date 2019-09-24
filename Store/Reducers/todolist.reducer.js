@@ -23,7 +23,7 @@ export const defaultState = {
       id: 4
     }
   ],
-  selected: new Set([]),
+  selected: new Set([])
 };
 
 export default (state = defaultState, action) => {
@@ -42,11 +42,12 @@ export default (state = defaultState, action) => {
     case TYPE.SELECT: {
       const { items, selected } = state;
       const { payload } = action;
-      if (selected.has(payload)) {
-        selected.delete(payload);
-      } else selected.add(payload);
-      const newSelected = selected.size === items.length ? new Set([]) : selected
-      return { ...state, selected: newSelected }
+      // if (selected.has(payload)) {
+      //   selected.delete(payload);
+      // } else selected.add(payload);
+      // const newSelected = selected.size === items.length ? new Set([]) : selected
+      // return { ...state, selected: newSelected }
+      return {...state, selected: new Set([payload])}
     }
 
     default:
